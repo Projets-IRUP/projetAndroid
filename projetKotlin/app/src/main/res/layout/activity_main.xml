@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <org.osmdroid.views.MapView
@@ -22,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="650dp"
+        android:background="#275776"
         android:onClick="button_onclick_voirMaree"
         android:text="Afficher les prévisions marées"
         android:visibility="invisible"
