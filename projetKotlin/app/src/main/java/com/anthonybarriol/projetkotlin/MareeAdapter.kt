@@ -1,9 +1,12 @@
 package com.anthonybarriol.projetkotlin
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import model.Maree
 import java.time.format.DateTimeFormatter
@@ -22,6 +25,8 @@ class MareeAdapter(private var marees: List<Maree>) : RecyclerView.Adapter<Maree
         return MareeViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MareeViewHolder, position: Int) {
         val maree = marees[position]
         val formatter = DateTimeFormatter.ofPattern("dd-mm HH:mm")
@@ -30,7 +35,7 @@ class MareeAdapter(private var marees: List<Maree>) : RecyclerView.Adapter<Maree
         if (maree.maree_type == 1){
             holder.typeTextView.text = "Haute"
         }else{
-            holder.typeTextView.text = "Basse"
+            holder.typeTextView.text = "Base"
         }
 
         holder.coefficientTextView.text = maree.coefficient.toString()
