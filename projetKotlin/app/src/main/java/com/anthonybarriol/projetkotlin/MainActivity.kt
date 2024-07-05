@@ -3,6 +3,8 @@ package com.anthonybarriol.projetkotlin
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import org.osmdroid.config.Configuration
@@ -19,11 +21,23 @@ import service.RetrofitClient
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mapView: MapView
-
+    private lateinit var buttonVoirMarees: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Configuration.getInstance().load(applicationContext, getPreferences(MODE_PRIVATE))
         setContentView(R.layout.activity_main)
+
+        //Initialize button details maréees
+        buttonVoirMarees = findViewById<Button>(R.id.button_voirMarees)
+        buttonVoirMarees.setOnClickListener {
+            val portName = it.getTag(R.id.tag_port_nom) as? String
+            val portId = it.getTag(R.id.tag_port_id) as? Int
+            val intent = Intent(this, PortDetailsMareeActivity::class.java).apply {
+                putExtra("nom", portName)
+                putExtra("port_id", portId)
+            }
+            startActivity(intent)
+        }
 
         // Initialize map
         mapView = findViewById(R.id.mapView)
@@ -68,11 +82,13 @@ class MainActivity : AppCompatActivity() {
         startMarker.title = port.nom
         startMarker.icon = drawable
         startMarker.setOnMarkerClickListener { _, _ ->
-            val intent = Intent(this, PortDetailsMareeActivity::class.java).apply {
-                putExtra("nom", port.nom)
-                putExtra("port_id", port.id_port)
-            }
-            startActivity(intent)
+
+            buttonVoirMarees.visibility = View.VISIBLE
+            buttonVoirMarees.setTag(R.id.tag_port_id, port.id_port)
+            buttonVoirMarees.setTag(R.id.tag_port_nom, port.nom)
+
+            startMarker.showInfoWindow()
+
             true
         }
         mapView.overlays.add(startMarker)
