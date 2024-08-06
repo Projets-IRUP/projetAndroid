@@ -1,0 +1,8 @@
+<resources>
+    <!-- Style pour les boutons -->
+    <style name="ButtonStyle">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/boutton_all</item>
+    </style>
+</resources>

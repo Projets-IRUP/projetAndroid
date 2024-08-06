@@ -29,15 +29,10 @@ class MareeAdapter(private var marees: List<Maree>) : RecyclerView.Adapter<Maree
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MareeViewHolder, position: Int) {
         val maree = marees[position]
-        val formatter = DateTimeFormatter.ofPattern("dd-mm HH:mm")
+        val formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm")
         holder.dateHeureTextView.text = maree.date_heure.format(formatter)
         holder.hauteurTextView.text = maree.hauteur.toString()
-        if (maree.maree_type == 1){
-            holder.typeTextView.text = "Haute"
-        }else{
-            holder.typeTextView.text = "Base"
-        }
-
+        holder.typeTextView.text = if (maree.maree_type == 1) "Haute" else "Basse"
         holder.coefficientTextView.text = maree.coefficient.toString()
     }
 

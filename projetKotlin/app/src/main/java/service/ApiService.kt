@@ -6,15 +6,17 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiService {
-    @GET("port")
+    @GET("/port")
     fun getPort(): Call<List<Port>>
 
-
-    @POST("maree1j")
+    @POST("/maree1j")
     fun getMaree1j(@Body requestBody: Map<String, Int>): Call<List<Maree>>
 
+    @POST("/maree3j")
+    fun getMaree3j(@Body requestBody: Map<String, Int>): Call<List<Maree>>
+
+    @POST("/maree30j")
+    fun getMaree30j(@Body requestBody: Map<String, Int>): Call<List<Maree>>
 }

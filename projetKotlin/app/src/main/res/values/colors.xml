@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="boutton_1J">#5c9eb7</color> <!-- Couleur pour Button 1J -->
+    <color name="boutton_3J">#427183</color> <!--  Couleur pour Button 3J  -->
+    <color name="boutton_30J">#28454f</color> <!--  Couleur pour Button 30J  -->
+    <color name="boutton_all">#183649</color> <!--  Couleur pour Buttons -->
 </resources>
